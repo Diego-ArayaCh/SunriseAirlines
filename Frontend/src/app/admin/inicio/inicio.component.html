@@ -1,0 +1,163 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fs-6 fas fa-eye fa-sm text-white-50"></i>View flight reports</a>
+</div>
+
+<!-- Chart Row -->
+<div style="width: 95%;margin: 20px auto;">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12  col-md-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChart" #mychart></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
+                            Routes</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{v_NumRutas}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-route fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                            Airplanes</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{v_NumAviones}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-plane fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 text-center">
+                            Customers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{v_NumClientes}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 text-center">
+                            Flights</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{v_NumVuelos}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-plane-departure fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <!-- Content Column -->
+    <div class="col-xl-12 col-lg-12  col-md-6 mb-4">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">Top 5 flights</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped ">
+                    <!--routerlink, used to render another component-->
+                    <thead>
+                        <tr>
+                            <th style="text-align:center" scope="col">Number</th>
+                            <th style="text-align:center" scope="col">From</th>
+                            <th style="text-align:center" scope="col">To</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of v_ListaTopVuelos">
+                            <td style="text-align:center">{{item.modelo}}</td>
+                            <td style="text-align:center">{{item.cant_pasa}}</td>
+                            <td style="text-align:center">{{item.cant_pasa}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr *ngIf="v_ListaTopVuelos==null || v_ListaTopVuelos.length==0">
+                            <td style="text-align:center">- - -</td>
+                            <td style="text-align:center">- - -</td>
+                            <td style="text-align:center">- - -</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Approach -->
+    <!-- <div class="col-xl-12 col-lg-12 col-md-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">What you can see here? </h6>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    An example 2-level sidebar with collasible menu items. The menu functions like an "accordion"
+                    where
+                    only a
+                    single
+                    menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively
+                    shrink
+                    in width on
+                    smaller screens.</p>
+                <ul class="list-unstyled">
+                    <li>
+                        <h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on
+                        mobile
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+</div>

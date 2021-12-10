@@ -1,0 +1,186 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 1 -->
+        <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+            type="button" role="tab" aria-controls="Informacion" aria-selected="true">Tab-1</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 2 -->
+        <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+            type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Tab-2</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 3 -->
+        <button class="nav-link" id="Direccion-tab" data-bs-toggle="tab" data-bs-target="#Direccion" type="button"
+            role="tab" aria-controls="Direccion" aria-selected="false">Tab-3</button>
+    </li>
+
+</ul>
+
+<div class="">
+    <form [formGroup]="usuarioForm" enctype="multipart/form-data" class="row g-3 ">
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Personal Information
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <label for="basic-url" class="form-label">Name</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input formControlName="nombre" type="text" placeholder="Name" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Last Name</label>
+                            <div class="col-lg-12">
+                                <input formControlName="apellidos" type="text" placeholder="Last Name"
+                                    class="form-control" readonly />
+                            </div>
+                            <div class="text-danger" *ngIf="usuarioForm.get('correo')?.hasError('required')
+                            && usuarioForm.get('correo')?.touched">
+                                <span>Email is <strong>required</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Email</label>
+                            <div class="col-lg-12">
+                                <input formControlName="correo" type="email" placeholder="Email" class="form-control"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Date of Birth</label>
+                            <div class="col-lg-12">
+                                <input formControlName="fech_nacimiento" type="date" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Work Phone Number</label>
+                            <div class="col-lg-12">
+                                <input formControlName="tel_trabajo" type="number" class="form-control"
+                                    placeholder="(###)####-##-##" required readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Personal Phone Number</label>
+                            <div class="col-lg-12">
+                                <input formControlName="tel_celular" type="number" class="form-control"
+                                    placeholder="(###)####-##-##" required readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+
+            </div> <!-- fin del TAB 1 -->
+
+            <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Account Information
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Username</label>
+                                <input formControlName="usuario" type="text" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input formControlName="contrasenna1" placeholder="Password" class="form-control"
+                                        readonly>
+                                    <input formControlName="contrasenna2" placeholder="Confirm Password"
+                                        class="form-control" readonly>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3" style="max-width: 100%; border:0px">
+                    <div class="row no-gutters">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-xs-2 mb-4">
+                            <div *ngIf="previsualizacion!='' ">
+                                <img class="img-thumbnail img-fluid" [src]="previsualizacion" />
+                            </div>
+                            <img *ngIf="previsualizacion =='' " id="imagenCapturada" class="img-thumbnail img-fluid"
+                                src="/assets/images/imagen-no-disponible.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">This is you image of your profile</h5>
+                                <p class="card-text">Any problem with the image, please contact the IT Support</p>
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div> <!-- fin del TAB 2 -->
+
+            <div class="tab-pane fade " id="Direccion" role="tabpanel" aria-labelledby="Direccion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Location
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-7 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Location Description</label>
+                                <input formControlName="sennas" type="text" class="form-control" readonly />
+                                <div class="text-danger" *ngIf="usuarioForm.get('sennas')?.hasError('required')
+                                && usuarioForm.get('sennas')?.touched">
+                                    <span>Location Description is <strong>required</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-12 mb-3">
+                        <div class="full " id="map">
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div><!-- fin del TAB 3 -->
+
+        </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+</div> <!-- fin del row principal-->

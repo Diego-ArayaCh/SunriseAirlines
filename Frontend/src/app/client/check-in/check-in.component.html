@@ -1,0 +1,75 @@
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
+    style="background-image: url(./assets/images/ofertas.jpg)">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-left">
+                <div class="row row-mt-15em">
+                    <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+                        <span class="intro-text-small">Selection beggins 24 hours before the flight</span>
+                        <h1>Check In</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="gtco-section container">
+
+    <div class="col-md-12 col-md-offset-2 text-center gtco-heading animate-box">
+        <h2>Check-In</h2>
+        <p>To complete the check-in you must choose a seat available</p>
+    </div>
+
+    <!-- Content Column -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4 gtco-heading animate-box">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body overflow-auto">
+                
+                <table class="table table-striped">
+                    <!--routerlink, used to render another component-->
+                    <thead>
+                        <tr>
+                            <th style="text-align:center" scope="col">From</th>
+                            <th scope="col"></th>
+                            <th style="text-align:center" scope="col">To</th>
+                            <th scope="col"></th>
+                            <th style="text-align:center" scope="col">Takeoff Time</th>
+                            <th scope="col"></th>
+                            <th style="text-align:center" scope="col">Action</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of vuelos | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <td style="text-align:center">{{item.ruta_id.inicio.nombre}}</td>
+                            <td></td>
+                            <td style="text-align:center">{{item.ruta_id.destino.nombre}}</td>
+                            <td></td>
+                            <td style="text-align:center">{{item.takeoff}}</td>
+                            <td></td>
+                            <td style="text-align:center">
+                                <a [routerLink]="['/client/flight-seats', item.reserva]"><i  id="check-in" class="fs-5 far fa-address-book text-primary"></i></a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr *ngIf="vuelos==null || vuelos.length==0">
+                            <td style="text-align:center ">- - -</td>
+                            <td></td>
+                            <td style="text-align:center">- - -</td>
+                            <td></td>
+                            <td style="text-align:center">- - -</td>
+                            <td></td>
+                            <td style="text-align:center">- - -</td>
+                            <td></td>
+                            <td style="text-align:center">- - -</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

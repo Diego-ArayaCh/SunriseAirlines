@@ -1,0 +1,70 @@
+<!-- Content Column -->
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+  <!-- Project Card Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h1 class="display-6" style=" text-align:center">
+              Airport Overview
+          </h1>
+      </div>
+      <div class="card-body overflow-auto">
+          <table class="table table-striped">
+              <!--routerlink, used to render another component-->
+              <thead>
+                  <tr>
+                      <th style="text-align:center" scope="col">Name</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Country</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">City</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Description</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Options</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let aero of collection| paginate: { itemsPerPage: 5, currentPage: p }">
+                      <td style="text-align:center">{{aero.nombre}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{aero.pais}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{aero.ciudad}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{aero.descripcion}}</td>
+                      <td></td>
+                      <td style="text-align:center" width="150px">
+                    
+                        <a [routerLink]="['../../airport/edit',aero._id]"><i class="fs-5 fas fa-edit text-primary" ></i></a>
+                        <a [routerLink]="['../../airport/details',aero._id]"><i class="fs-5 fas fa-eye text-primary" ></i></a>
+                          
+                          <i *ngIf='aero.estado==0' (click)="estadoAerop(aero._id, aero)" 
+                          class="fs-5 fas fa-arrow-circle-up text-success"></i>
+                          <i *ngIf='aero.estado==1' (click)="estadoAerop(aero._id, aero)" 
+                          class="fs-5 fas fa-arrow-circle-down text-danger"></i>
+                        
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <!-- <tr *ngIf="vuelos==null || vuelos.length==0">
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td></td>
+                  </tr> -->
+              </tbody>
+          </table>
+          <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+      </div>
+  </div>
+</div>

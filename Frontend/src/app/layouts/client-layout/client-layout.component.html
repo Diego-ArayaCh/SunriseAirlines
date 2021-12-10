@@ -1,0 +1,57 @@
+<!--Nav móvil-->
+<a class="js-gtco-nav-toggle gtco-nav-toggle gtco-nav-white"><i></i></a>
+<div id="gtco-espontaneo">
+  <ul>
+    <li><a class="option" routerLink="client/offers">Offers</a></li>
+    <li><a class="option" routerLink="client/purchase-flight">Flights</a></li>
+    <li><a class="option" routerLink="client/check-in">Check-in</a></li>
+    <li><a class="option" routerLink="client/purchases">Purchases</a></li>
+    <li><a class="option" routerLink="client/profile">Profile</a></li>
+    <li><a class="option logout" (click)="logout()">Log out</a></li>
+  </ul>
+
+</div>
+<nav class="gtco-nav" role="navigation">
+  <div class="gtco-container">
+
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div id="gtco-logo"><a routerLink="/client">Sunrise Airlines <em>.</em></a></div>
+      </div>
+      <div id="menu" class="col-xs-8 text-right menu-1">
+        <ul>
+          <li><a routerLink="client/offers">Offers</a></li>
+          <li><a routerLink="client/purchase-flight">Flights</a></li>
+          <li><a routerLink="client/check-in">Check-in</a></li>
+          <li><a routerLink="client/purchases">Purchases</a></li>
+          <li><a routerLink="client/profile">Profile</a></li>
+          <li><a (click)="logout()" class="logout">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>
+
+
+<footer id="gtco-footer" role="contentinfo">
+  <div class="row copyright">
+    <div class="col-md-12">
+      <div class="pull-left">
+        <small class="block">&copy; 2021 Sunrise Airlines. All Rights Reserved.</small>
+        <small class="block">Designed by <a href="#" target="_blank">Sunrise Desing Team</a></small>
+      </div>
+      <div class="pull-right">
+        <ul class="gtco-social-icons pull-right">
+          <li><a href="#"><i class="icon-twitter"></i></a></li>
+          <li><a href="#"><i class="icon-facebook"></i></a></li>
+          <li><a href="#"><i class="icon-linkedin"></i></a></li>
+          <li><a href="#"><i class="icon-dribbble"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

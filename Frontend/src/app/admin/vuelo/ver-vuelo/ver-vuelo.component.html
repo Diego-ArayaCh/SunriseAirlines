@@ -1,0 +1,73 @@
+<!-- Content Column -->
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="display-6" style=" text-align:center">
+                Flights Overview
+            </h1>
+        </div>
+        <div class="card-body overflow-auto">
+            <table class="table table-striped">
+                <!--routerlink, used to render another component-->
+                <thead>
+                    <tr>
+                        <th style="text-align:center" scope="col">Schedule</th>
+                        <th scope="col"></th>
+                        <th style="text-align:center" scope="col">From</th>
+                        <th scope="col"></th>
+                        <th style="text-align:center" scope="col">To</th>
+                        <th scope="col"></th>
+                        <th style="text-align:center" scope="col">Options</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vuelo of vuelos| paginate: { itemsPerPage: 5, currentPage: p }">
+                        <td style="text-align:center">{{vuelo.horario_id.fecha}}</td>
+                        <td></td>
+                        <td style="text-align:center">{{vuelo.ruta_id.inicio.nombre}}</td>
+                        <td></td>
+                        <td style="text-align:center">{{vuelo.ruta_id.destino.nombre}}</td>
+                        <td></td>
+                        <td style="text-align:center" *ngIf="vuelo.estado==1">
+                            <a [routerLink]="['../../flight/see-flight',vuelo._id]">
+                                <i class="fs-5 fas fa-eye text-primary"></i>
+                            </a>
+                            <a (click)="updateState(vuelo._id, vuelo.estado)">
+                                <i class="fs-5 fas fa-arrow-circle-down text-danger"></i>
+                            </a>
+                        </td>
+                        <td style="text-align:center" *ngIf="vuelo.estado==0">
+                            <a [routerLink]="['../../flight/see-flight',vuelo._id]">
+                                <i class="fs-5 fas fa-eye text-primary"></i>
+                            </a>
+                            <a (click)="updateState(vuelo._id, vuelo.estado)">
+                                <i class="fs-5 fas fa-arrow-circle-up text-success"></i>
+                            </a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="vuelos==null || vuelos.length==0">
+                        <td style="text-align:center">- - -</td>
+                        <td></td>
+                        <td style="text-align:center">- - -</td>
+                        <td></td>
+                        <td style="text-align:center">- - -</td>
+                        <td></td>
+                        <td style="text-align:center">- - -</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

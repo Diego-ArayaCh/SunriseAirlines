@@ -1,0 +1,42 @@
+.nav-pills a {
+    color:RGB(9, 198, 171)
+}
+.nav-pills a:hover{
+    color:white ;
+}
+#fixed{
+    position:fixed;
+   z-index: 10000;
+}
+
+
+#submenu li a{
+    color:white ;
+}
+#submenu li a:hover{
+    color:rgb(220,53,69) ;
+}
+#submenu0 li a{
+    color:white ;
+}
+#submenu0 li a:hover{
+    color:rgb(220,53,69) ;
+}
+#submenu1 li a{
+    color:white ;
+}
+#submenu1 li a:hover{
+    color:rgb(220,53,69) ;
+}
+#submenu2 li a{
+    color:white ;
+}
+#submenu2 li a:hover{
+    color:rgb(220,53,69) ;
+}
+#submenu3 li a{
+    color:white ;
+}
+#submenu3 li a:hover{
+    color:rgb(220,53,69) ;
+}

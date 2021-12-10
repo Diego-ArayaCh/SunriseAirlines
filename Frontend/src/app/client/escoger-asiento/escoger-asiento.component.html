@@ -1,0 +1,96 @@
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
+    style="background-image: url(./assets/images/ofertas.jpg)">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-left">
+                <div class="row row-mt-15em">
+                    <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+                        <span class="intro-text-small">New offers every day</span>
+                        <h1>Offers</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="gtco-section container">
+    <style>
+        .pasillo{
+    width:"100px";
+    }
+    </style>
+    <div class="col-md-12 col-md-offset-2 text-center gtco-heading animate-box">
+        <h2>Airplanes Seats</h2>
+        <p>Choose between the available seats</p>
+    </div>
+<button class="btn btn-primary center" value='Accion' (click)='escogerAsiento()'>Confirm</button>
+    <!-- Content Column -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4" >
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body overflow-auto" >
+                
+                    
+                    <!-- <table class="table table-striped mt-4 mb-4 me-4">
+                        <thead>
+                            <tr *ngFor='let numero of encabezado; let i = index'>
+                                
+                                <th>{{numero}}</th>
+                                <th ngIf="i%3==0"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let items of asientos">
+                               <td *ngFor='let item of items; let i = index'>
+                                   <input *ngIf="item.est==true" type="radio" name="asientos" value="{{item.fil+'-'+item.num}}"/>
+                                   <input *ngIf="item.est==false" style='background-color: red;' type="radio" name="" readonly/>
+                                   
+                               </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    
+                    <div class="card shadow mb-4">
+                        <div class="card-body overflow-auto">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th *ngFor="let item of asientosVuelo; let i = index;let l = last" [ngStyle]="{'width': ((i+1)%3==0) ? '100px' : '30px'}"  >
+                                            <div style="margin: 0;" *ngIf='(i+1)%3!=0' width="50px">{{item.numFil}}</div>
+                                        <div style="display:inline;" *ngIf='((i+1)%3==0)&&(l==false)' width="100px">{{item.numFil}}
+                                            </div>
+                                            <div style="display:inline; margin: 0;" *ngIf='((i+1)%3==0)&&(l==true)' width="50px">{{item.numFil}}
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaAsientos">
+                                    <tr *ngFor="let item of asientos">
+                                        <td *ngFor="let item2 of item; let a = index; let l = last" >
+                                            <div >
+                                                <div *ngIf="item2.est==false" class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="seleccion" value="{{item2.fil+'-'+item2.num}}"
+                                                        id="inlineRadio1" style="background-color:green">
+                                                </div>
+                                                <div *ngIf="item2.est==true" class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name=""
+                                                        id="inlineRadio1" disabled style="background-color:red">
+                                                </div>
+                                                <div style="display: inline; margin-left: 75px;" *ngIf='(a+1)%3==0&&(l==false)' >- - -</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+

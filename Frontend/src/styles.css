@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.btn-primary {
+    background: #09C6AB;
+    color: #fff;
+    border: 2px solid #09C6AB !important;
+  }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background: #0adec0 !important;
+    border-color: #0adec0 !important;
+  }
+  .btn-primary.btn-outline {
+    background: transparent;
+    color: #09C6AB;
+    border: 2px solid #09C6AB;
+  }
+  .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
+    background: #09C6AB;
+    color: #fff;
+  }

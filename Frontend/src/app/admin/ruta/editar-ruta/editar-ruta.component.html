@@ -1,0 +1,240 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+  
+    <li class="nav-item" role="presentation">
+      <!-- ESTE ES EL TAB 1 -->
+      <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+        type="button" role="tab" aria-controls="Informacion" aria-selected="true">Step-1</button>
+    </li>
+  
+    <li class="nav-item" role="presentation">
+      <!-- ESTE ES EL TAB 2 -->
+      <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+        type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Step-2</button>
+    </li>
+  
+    <li class="nav-item" role="presentation">
+      <!-- ESTE ES EL TAB 3 -->
+      <button class="nav-link" id="Crear-tab" data-bs-toggle="tab" data-bs-target="#Crear" type="button" role="tab"
+        aria-controls="Crear" aria-selected="false">End</button>
+    </li>
+  
+  </ul>
+  
+  <div class="">
+    <form [formGroup]="rutaForm" (ngSubmit)="enviar()" enctype="multipart/form-data" class="row g-3 needs-validation ">
+      <div class="tab-content" id="myTabContent">
+  
+        <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+          <h1 class="display-6" style="margin-top:25px; text-align:center">
+            Route
+          </h1>
+          <hr class="my-4">
+  
+          <div class="row">
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <label for="fabri" class="form-label">Start airport</label>
+                <select  formControlName="inicio" class="form-control">
+                  <option value="">
+                    Choose
+                  </option>
+                  <option *ngFor="let aeropuerto of _aeropuertoInicio" [ngValue]="aeropuerto._id">
+                    {{aeropuerto.nombre}}
+                  </option>
+                </select>
+                <div class="text-danger" *ngIf="rutaForm.get('inicio')?.hasError('required')
+                              && rutaForm.get('inicio')?.touched">
+                  <span>Start airport is <strong>required</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <label for="fabri" class="form-label">Arrival airport</label>
+                <select formControlName="destino" id="fabri" class="form-control" >
+                  <option value="">
+                    Choose
+                  </option>
+                  <option *ngFor="let aeropuerto of _aeropuertoDestino" [ngValue]="aeropuerto._id">
+                    {{aeropuerto.nombre}}
+                  </option>
+                </select>
+                <div class="text-danger" *ngIf="rutaForm.get('destino')?.hasError('required')
+                              && rutaForm.get('destino')?.touched">
+                  <span>Arrival airport is <strong>required</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center" class="text-danger col-12"
+            *ngIf="!rutaForm.get('destino')?.hasError('required')&& !rutaForm.get('destino')?.hasError('required') && rutaForm.get('destino')?.value == rutaForm.get('inicio')?.value">
+            <span>The airports must be <strong>different</strong></span>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+              
+                <label for="basic-url" class="form-label">Price</label>
+                <p>Expressed in <strong>dollars</strong></p>
+                <div class="col-lg-12">
+                  <input formControlName="precio_trayecto" type="number" class="form-control"  />
+                  <div class="text-danger" *ngIf="rutaForm.get('precio_trayecto')?.hasError('required')
+                              && rutaForm.get('precio_trayecto')?.touched">
+                    <span>Price is <strong>required</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <label for="basic-url" class="form-label">Time of travel</label>
+                <p>Expressed in <strong>minutes</strong></p>
+                <div class="col-lg-12">
+                  <input formControlName="duracion" type="number" class="form-control"  />
+                  <div class="text-danger" *ngIf="rutaForm.get('duracion')?.hasError('required')
+                              && rutaForm.get('duracion')?.touched">
+                    <span>Time of travel is <strong>required</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <label for="basic-url" class="form-label">Discount</label>
+                <p>Expressed in <strong>decimal format</strong></p>
+                <div class="col-lg-12">
+                  <input formControlName="descuento" type="number" class="form-control"  />
+                  <div class="text-danger" *ngIf="rutaForm.get('descuento')?.hasError('required')
+                  && rutaForm.get('descuento')?.touched">
+        <span>Discount is <strong>required</strong></span>
+      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+  
+        </div> <!-- fin del TAB 1 -->
+  
+        <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+          <h1 class="display-6" style="margin-top:25px; text-align:center">
+            Schedule
+          </h1>
+          <hr class="my-4">
+  
+          <div class="row">
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <div class="col-12">
+                  <label for="basic-url" class="form-label">Date</label>
+                  <input value ="" formControlName="date"  type="date" class="form-control" />
+                  <div class="invalid-feedback">
+                    Please fill in the date space!
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mb-3">
+              <div class="form-group">
+                <div class="col-12">
+                  <label for="basic-url" class="form-label">Departure time</label>
+                  <input value ="" formControlName="time" type="time" class="form-control"  />
+                  <div class="invalid-feedback">
+                    Please fill in the schedule space!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+         
+          <input type="button"  (click)="agregarHorarios()" value="Add Schedule" class="btn btn-primary"
+            style=" text-align: center; margin-left: 50%; transform: translateX(-50%); margin-top:60px" />
+  
+          <table class="table table-striped mt-5">
+            <!--routerlink, used to render another component-->
+            <thead>
+              <tr>
+                <th style="text-align:center" scope="col">Date</th>
+                <th style="text-align:center" scope="col">Time</th>
+                <th style="text-align:center" scope="col">Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of _horariosCreados| paginate: { itemsPerPage: 5, currentPage: p_Horario }">
+                <td style="text-align:center">{{item.fechaVisual}}</td>
+                <td style="text-align:center">{{item.hora_sal}}</td>
+                <td style="text-align:center">
+                  <!-- colocar ngif para evitar borrar relacionados con vuelos -->
+                  <a *ngIf="!item.inUse" >  
+                    <i (click)="borrarHorarioCreado(item)" class="fs-5 text-danger fas fa-trash"></i>
+                  </a>
+                  <a *ngIf="item.inUse" >
+                    <i class="fs-5 fas text-primary fa-shield-alt"></i>
+                  </a>
+                
+                </td>
+              </tr>
+              <tr *ngIf="_horariosCreados==null || _horariosCreados.length==0">
+                <td style="text-align:center">- - -</td>
+                <td style="text-align:center">- - -</td>
+                <td style="text-align:center">- - -</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="col-auto text-center" (pageChange)="p_Horario = $event">
+          </pagination-controls>
+  
+          <br />
+  
+        </div> <!-- fin del TAB 2 -->
+  
+        <div class="tab-pane fade " id="Crear" role="tabpanel" aria-labelledby="Crear-tab">
+          <h1 class="display-6" style="margin-top:25px; text-align:center">
+            Update
+          </h1>
+          <hr class="my-4">
+          <br />
+          <p class="lead" style=" text-align: center; margin-top:20px">
+            ATTENTION! The specified ROUTE will be updated in the Database.
+          </p>
+  
+          <input type="submit" value="Update Route" class="btn btn-primary"
+            style=" text-align: center; margin-left: 50%; transform: translateX(-50%); margin-top:60px" />
+          <br />
+  
+        </div> <!-- fin del TAB 3 -->
+  
+      </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+  </div> <!-- fin del row principal-->
+  
+  
+  
+  
+  <script type="text/javascript">
+    //Alv-> PARECE NO FUNCIONAR EN ANGULAR 12/10/2021
+    //JP-> Aun no funciona. Fecha 13/10/2021
+    function esElSubmit() {
+      'use strict';
+  
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation');
+      console.log("funciona");
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach((form) => {
+        form.addEventListener('submit', (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }
+  
+  </script>
+  

@@ -1,0 +1,264 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <!-- ---------------------------------------------------------------------------- -->
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">ADMINISTRADOR</span>
+                </a>
+
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a routerLink='/admin' ng-reflect-router-link='/admin' href='/admin'
+                            class="nav-link align-middle px-0">
+                            <i class="fs-4 fas fa-tachometer-alt"></i> <span
+                                class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-3 fas fa-search-location"></i> <span
+                                class="ms-1 d-none d-sm-inline">Flights</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-3 far fa-calendar-alt"></i> <span
+                                class="ms-1 d-none d-sm-inline">Schedules</span></a>
+                    </li>
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 fas fa-plane-departure"></i> <span
+                                class="ms-1 d-none d-sm-inline">Planes</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/avion/crear-avion' ng-reflect-router-link='admin/avion/crear-avion'
+                                    href='admin/avion/crear-avion' class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Create</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/avion/editar-avion'
+                                    ng-reflect-router-link='admin/avion/editar-avion' href='admin/avion/editar-avion'
+                                    class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Edit</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/avion/ver-avion' ng-reflect-router-link='admin/avion/ver-avion'
+                                    href='admin/avion/ver-avion' class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Watch</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 fas fa-broadcast-tower"></i> <span
+                                class="ms-1 d-none d-sm-inline">Airports</span> </a>
+                        <ul class="collapse  nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Create</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Edit</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Watch</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 fas fa-users"></i> <span class="ms-1 d-none d-sm-inline">Customers</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Create</span> </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Watch</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-3 fas fa-info-circle"></i> <span
+                                class="ms-1 d-none d-sm-inline">Information</span> </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown pb-4 ">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
+                            class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">Usuario #001</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" routerLink='/inicio' ng-reflect-router-link='/inicio'
+                                href='/inicio'>Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------------------------------------------------------------------- -->
+        <div id="fixed" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">ADMINISTRADOR</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a routerLink='/admin' ng-reflect-router-link='/admin' href='/admin'
+                            class="nav-link align-middle px-0">
+                            <i class="fs-4 fas fa-tachometer-alt"></i> <span
+                                class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-3 fas fa-search-location"></i> <span
+                                class="ms-1 d-none d-sm-inline">Flights</span></a>
+                        <ul class="collapse  nav flex-column ms-1" id="submenu" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/flight/add-flight' class=" nav-link px-0">
+                                    <i class="fs-4 fas fa-plus-circle"></i> <span class="d-none d-sm-inline">
+                                        Add</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/flight/overview-flight' class=" nav-link px-0">
+                                    <i class="fs-5 fas fa-list"></i> <span class="d-none d-sm-inline"> Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu0" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-3 fas fa-route"></i> <span
+                                class="ms-1 d-none d-sm-inline">Routes</span></a>
+                        <ul class="collapse  nav flex-column ms-1" id="submenu0" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/route/add-route' class=" nav-link px-0">
+                                    <i class="fs-4 fas fa-plus-circle"></i> <span class="d-none d-sm-inline">
+                                        Add</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/route/overview-route' class=" nav-link px-0">
+                                    <i class="fs-5 fas fa-list"></i> <span class="d-none d-sm-inline"> Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 fas fa-plane-departure"></i> <span
+                                class="ms-1 d-none d-sm-inline">Airplanes</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/airplane/add-airplane' ng-reflect-router-link='admin/airplane/add-airplane'
+                                    href='admin/airplane/add-airplane' class=" sub-link  nav-link px-0">
+                                    <i class="fs-4 fas fa-plus-circle "></i> <span class=" sub-link d-none d-sm-inline">
+                                        Add</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/airplane/overview-airplane' ng-reflect-router-link='admin/airplane/overview-airplane'
+                                    href='admin/airplane/overview-airplane' class=" sub-link nav-link px-0">
+                                    <i class="fs-5 fas fa-list"></i> <span class="d-none d-sm-inline"> Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 fas fa-broadcast-tower"></i> <span
+                                class="ms-1 d-none d-sm-inline">Airports</span>
+                        </a>
+                        <ul class="collapse  nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/airport/add-airport' class=" nav-link px-0">
+                                    <i class="fs-4 fas fa-plus-circle"></i> <span class="d-none d-sm-inline">
+                                        Add</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/airport/overview-airport' class=" nav-link px-0">
+                                    <i class="fs-5 fas fa-list"></i> <span class="d-none d-sm-inline"> Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 fas fa-users"></i>
+                            <span class="ms-1 d-none d-sm-inline">Customers</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a routerLink='admin/customer/add-customer' class="sub-link nav-link px-0">
+                                    <i class="fs-4 fas fa-plus-circle"></i> <span class="d-none d-sm-inline">
+                                        Add</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink='admin/customer/overview-customer' class="sub-link nav-link px-0">
+                                    <i class="fs-5 fas fa-list"></i> <span class="d-none d-sm-inline"> Overview</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-3 fas fa-info-circle"></i> <span
+                                class="ms-1 d-none d-sm-inline">Information</span> </a>
+                    </li> -->
+                </ul>
+                <hr>
+                <div class="dropdown pb-4 ">
+                    <a *ngIf="user != null" href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{user.imagen}}" alt="hugenerd" width="30" height="30"
+                            class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">{{user.usuario}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <!-- <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li> -->
+                        <li><a class="dropdown-item" (click)="logout()" >Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <router-outlet></router-outlet>
+            <br>
+            <br>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Sunrise Airlines 2021</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

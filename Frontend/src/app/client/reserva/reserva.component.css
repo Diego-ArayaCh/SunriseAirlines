@@ -1,0 +1,10 @@
+#comprar:hover{
+    cursor: pointer;
+}
+
+.currency{
+    cursor: pointer;
+    margin-left: 7px;
+    color: black;
+    font-weight: bold;
+  }

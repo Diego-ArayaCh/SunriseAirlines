@@ -1,0 +1,209 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 1 -->
+        <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+            type="button" role="tab" aria-controls="Informacion" aria-selected="true">Step-1</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 2 -->
+        <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+            type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Step-2</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 3 -->
+        <button class="nav-link" id="Crear-tab" data-bs-toggle="tab" data-bs-target="#Crear" type="button" role="tab"
+            aria-controls="Crear" aria-selected="false">End</button>
+    </li>
+
+</ul>
+
+<div class="">
+    <form [formGroup]="avionForm" (ngSubmit)="submitForm()" class="row g-3 needs-validation was-validated" novalidate>
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    General Information
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="fabri" class="form-label">Manufacturer</label>
+                            <select formControlName="marca" id="fabri" class="form-control" required >
+                                <option *ngFor="let brand of listaMarcas" [ngValue]="brand">
+                                    {{brand}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Missing Manufacturer!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Model</label>
+                            <div class="col-lg-12">
+                                <input formControlName="modelo" type="text" class="form-control" required/>
+                                <div class="invalid-feedback">
+                                    Model required!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Year of manufacture</label>
+                            <div class="col-lg-12">
+                                <input formControlName="anho" type="number" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Missing construction year!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">State</label>
+                            <div class="col-lg-12">
+                                <select formControlName="estado" type="number" class="form-control">
+                                    <option value="1" >Enabled</option>
+                                    <option value="0">Disabled</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    State required!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+
+            </div> <!-- fin del TAB 1 -->
+
+            <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Characteristics
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Number of lanes</label>
+                                <input formControlName="cant_filas" type="number" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Require number of lanes in airplane!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Seats per lane</label>
+                                <select formControlName="cant_af" type="number" class="form-control" >
+                                    <option value="6" >6</option>
+                                    <option value="9">9</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Required number of seats per lane!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3" style="max-width: 100%; border:0px">
+                    <div class="row no-gutters">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-xs-2 mb-4">
+                            <div *ngIf="previsualizacion!='' ">
+                                <img class="img-thumbnail img-fluid" [src]="previsualizacion" />
+                            </div>
+                            <img *ngIf="previsualizacion =='' " id="imagenCapturada" class="img-thumbnail img-fluid"
+                                src="/assets/images/imagen-no-disponible.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Please select an image for the airplane</h5>
+                                <p class="card-text">With the downside button youy can select an image</p>
+                                <br />
+                                <div class="form-group">
+                                    <div class="mb-3">
+                                        <input (change)="obtenerImagen($event)" class="form-control form-control-lg"
+                                            id="formFileSm" type="file" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+
+            </div> <!-- fin del TAB 2 -->
+
+            <div class="tab-pane fade " id="Crear" role="tabpanel" aria-labelledby="Crear-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Update
+                </h1>
+                <hr class="my-4">
+                <br />
+                <p class="lead" style=" text-align: center; margin-top:20px">
+                    ¡ATTENTION! the AIRPLANE will be updated in Database
+                   
+                </p>
+
+                <input type="submit" value="Registrar Avion" class="btn btn-primary"
+                    style=" text-align: center; margin-left: 50%; transform: translateX(-50%); margin-top:60px" />
+                <br />
+
+            </div> <!-- fin del TAB 3 -->
+
+        </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+</div> <!-- fin del row principal-->
+
+
+
+
+<script type="text/javascript">
+    //Alv-> PARECE NO FUNCIONAR EN ANGULAR 12/10/2021
+    //JP-> Aun no funciona. Fecha 13/10/2021
+    //JD-> Sigue sin funcionar. Fecha 15/10/2021
+    function esElSubmit() {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+        console.log("funciona");
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }
+
+  
+
+
+
+
+
+</script>

@@ -1,0 +1,288 @@
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
+    style="background-image: url(./assets/images/profile-image.jpg)">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-left">
+                <div class="row row-mt-15em">
+                    <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+                        <span class="intro-text-small">Please complete the form below to complete your registration
+                        </span>
+                        <h1>Sign Up</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="gtco-section container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+        <!-- SELECTOR DEL TAB-->
+
+        <li class="nav-item" role="presentation">
+            <!-- ESTE ES EL TAB 1 -->
+            <button class="nav-link active mt-text animate-box" id="Informacion-tab" data-bs-toggle="tab"
+                data-bs-target="#Informacion" type="button" role="tab" aria-controls="Informacion"
+                aria-selected="true">Tab-1</button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <!-- ESTE ES EL TAB 2 -->
+            <button class="nav-link mt-text animate-box" id="Caracteristicas-tab" data-bs-toggle="tab"
+                data-bs-target="#Caracteristicas" type="button" role="tab" aria-controls="Caracteristicas"
+                aria-selected="false">Tab-2</button>
+        </li>
+        <li class="nav-item mt-text animate-box" role="presentation">
+            <!-- ESTE ES EL TAB 2 -->
+            <button class="nav-link" id="Direccion-tab" data-bs-toggle="tab" data-bs-target="#Direccion" type="button"
+                role="tab" aria-controls="Direccion" aria-selected="false">Tab-3</button>
+        </li>
+        <li class="nav-item mt-text animate-box" role="presentation">
+            <!-- ESTE ES EL TAB 3 -->
+            <button class="nav-link" id="Crear-tab" data-bs-toggle="tab" data-bs-target="#Crear" type="button"
+                role="tab" aria-controls="Crear" aria-selected="false">Confirm</button>
+        </li>
+
+    </ul>
+
+    <div class="">
+        <form [formGroup]="usuarioForm" (ngSubmit)="enviar()" enctype="multipart/form-data" class="row g-3 ">
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="Informacion" role="tabpanel"
+                    aria-labelledby="Informacion-tab">
+                    <h1 class="display-4 mt-text animate-box" style="margin-top:25px; text-align:center ">
+                        Personal Information
+                    </h1>
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <label for="basic-url" class="form-label mt-text animate-box">Name</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input formControlName="nombre" type="text" placeholder="Name"
+                                        class="form-control mt-text animate-box">
+                                </div>
+                                <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required')
+                            && usuarioForm.get('nombre')?.touched">
+                                    <span class="mt-text animate-box">Name is <strong>required</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <label for="basic-url" class="form-label mt-text animate-box">Last Name</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input formControlName="apellidos" type="text" placeholder="Last Name"
+                                        class="form-control mt-text animate-box">
+                                </div>
+                                <div class="text-danger" *ngIf="usuarioForm.get('apellidos')?.hasError('required')
+                            && usuarioForm.get('apellidos')?.touched">
+                                    <span class="mt-text animate-box">Last name is <strong>required</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label for="basic-url" class="form-label mt-text animate-box">Date of Birth</label>
+                                <div class="col-lg-12">
+                                    <input formControlName="fech_nacimiento" type="date"
+                                        class="form-control mt-text animate-box" />
+                                    <div class="text-danger" *ngIf="usuarioForm.get('fech_nacimiento')?.hasError('required')
+                                && usuarioForm.get('fech_nacimiento')?.touched">
+                                        <span class="mt-text animate-box">Date of birth is
+                                            <strong>required</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label for="basic-url" class="form-label mt-text animate-box">Email</label>
+                                <div class="col-lg-12">
+                                    <input formControlName="correo" type="email" placeholder="Email"
+                                        class="form-control mt-text animate-box" />
+
+                                </div>
+                                <div class="text-danger" *ngIf="usuarioForm.get('correo')?.hasError('required')
+                            && usuarioForm.get('correo')?.touched">
+                                    <span class="mt-text animate-box">Email is <strong>required</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label for="basic-url" class="form-label mt-text animate-box">Work Phone Number</label>
+                                <div class="col-lg-12">
+                                    <input formControlName="tel_trabajo" type="number"
+                                        class="form-control mt-text animate-box" placeholder="(###)####-##-##"
+                                        required />
+                                    <div class="text-danger" *ngIf="usuarioForm.get('tel_trabajo')?.hasError('required')
+                                && usuarioForm.get('tel_trabajo')?.touched">
+                                        <span class="mt-text animate-box">Work phone number is
+                                            <strong>required</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label for="basic-url" class="form-label mt-text animate-box">Personal Phone
+                                    Number</label>
+                                <div class="col-lg-12">
+                                    <input formControlName="tel_celular" type="number"
+                                        class="form-control mt-text animate-box" placeholder="(###)####-##-##"
+                                        required />
+                                    <div class="text-danger" *ngIf="usuarioForm.get('tel_celular')?.hasError('required')
+                                && usuarioForm.get('tel_celular')?.touched">
+                                        <span class="mt-text animate-box">Personal phone number is
+                                            <strong>required</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                </div> <!-- fin del TAB 1 INFORMACION PERSONAL-->
+
+                <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                    <h1 class="display-4  mt-text animate-box" style="margin-top:25px; text-align:center">
+                        Account Information
+                    </h1>
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="basic-url" class="form-label mt-text animate-box">Username</label>
+                                    <input formControlName="usuario" type="text"
+                                        class="form-control mt-text animate-box" />
+                                    <div class="text-danger" *ngIf="usuarioForm.get('usuario')?.hasError('required')
+                                && usuarioForm.get('usuario')?.touched">
+                                        <span class="mt-text animate-box">Username is <strong>required</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="basic-url" class="form-label mt-text animate-box">Password</label>
+                                    <div class="input-group">
+                                        <input formControlName="contrasenna1" type="password" placeholder="Password"
+                                            class="form-control mt-text animate-box">
+                                        <input formControlName="contrasenna2" type="password"
+                                            placeholder="Confirm Password" class="form-control mt-text animate-box">
+                                    </div>
+                                </div>
+                                <div class="text-danger" *ngIf="usuarioForm.get('contrasenna1')?.hasError('required')
+                            && usuarioForm.get('contrasenna1')?.touched || usuarioForm.get('contrasenna2')?.hasError('required')
+                            && usuarioForm.get('contrasenna2')?.touched">
+                                    <span class="mt-text animate-box">Password is <strong>required</strong></span>
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="usuarioForm.get('contrasenna1')?.value != usuarioForm.get('contrasenna2')?.value">
+                                    <span class="mt-text animate-box">The passwords are differents
+                                        <strong></strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 animate-box" style=" max-width: 100%; border:0px">
+                        <div class=" animate-box row no-gutters">
+                            <div  class="col-xl-3 col-lg-3 col-md-4 col-xs-2 mb-4 ">
+                                <div  *ngIf="previsualizacion!='' ">
+                                    <img class=" img-thumbnail img-fluid mt-text " [src]="previsualizacion" />
+                                </div>
+                                <img *ngIf="previsualizacion =='' " id="imagenCapturada"
+                                    class="img-thumbnail img-fluid mt-text "
+                                    src="/assets/images/imagen-no-disponible.png" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title mt-text animate-box">Please choose a image to your profile
+                                    </h5>
+                                    <p class="card-text mt-text animate-box">With the button positioned below, you can
+                                        select an image from
+                                        your
+                                        computer
+                                    </p>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="mb-3">
+                                            <input (change)="obtenerImagen($event)"
+                                                class="form-control form-control-lg mt-text animate-box" id="formFileSm"
+                                                type="file" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br />
+
+                </div> <!-- fin del TAB 2 USUARIO E IMAGEN-->
+
+                <div class="tab-pane fade " id="Direccion" role="tabpanel" aria-labelledby="Direccion-tab">
+                    <h1 class="display-4  mt-text animate-box" style="margin-top:25px; text-align:center">
+                        Location
+                    </h1>
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-7 mb-3">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="basic-url" class="form-label mt-text animate-box">Location
+                                        Description</label>
+                                    <input formControlName="sennas" type="text"
+                                        class="form-control mt-text animate-box" />
+                                    <div class="text-danger" *ngIf="usuarioForm.get('sennas')?.hasError('required')
+                                && usuarioForm.get('sennas')?.touched">
+                                        <span class="mt-text animate-box">Location Description is
+                                            <strong>required</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-12 mb-3">
+                            <div class="full mt-text animate-box " id="map">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div> <!-- fin del TAB 3 MAPA -->
+
+                <div class="tab-pane fade " id="Crear" role="tabpanel" aria-labelledby="Crear-tab">
+                    <h1 class="display-4  mt-text animate-box" style="margin-top:25px; text-align:center">
+                        Sign Up
+                    </h1>
+                    <hr class="my-4">
+                    <br />
+                    <p class="lead mt-text animate-box" style=" text-align: center; margin-top:20px">
+                        WARNING! Your information will be saved
+                    </p>
+                    <input type="submit" value="Sign Up" class="mx-auto d-block btn btn-primary mt-text animate-box"
+                        style=" text-align: center; margin-left: 50%; transform: translateX(-50%); margin-top:60px" />
+                    <br />
+
+                </div> <!-- fin del TAB 4 ACTUALIZAR-->
+
+            </div> <!-- fin del tb content-->
+        </form> <!-- fin del form-->
+    </div> <!-- fin del row principal-->
+</div>

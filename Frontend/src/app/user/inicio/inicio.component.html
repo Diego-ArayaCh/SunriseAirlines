@@ -1,0 +1,426 @@
+<!-- MENU DE BUSQUEDA DE VUELOS-->
+<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
+  style="background-image: url(./assets/images/avion-prueba3.jpg)">
+  <div class="overlay"></div>
+  <div class="gtco-container">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 text-left">
+        <div class="row row-mt-15em">
+          <div class="col-md-6 mt-text animate-box" data-animate-effect="fadeInUp">
+            <h1>Planing Trip To Anywhere in The World?</h1>
+          </div>
+          <div class="col-md-6 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+            <div class="form-wrap">
+              <div class="tab">
+                <div class="tab-content">
+                  <div class="tab-content-inner active " data-content="signup">
+                    <h3 class="mb-4">Search flights now with us!</h3>
+
+                    <form action="#" [formGroup]="itemsForm" (ngSubmit)="buscarVuelo()" enctype="multipart/form-data"
+                      class="needs-validation ">
+
+                      <div class="input-group ">
+                        <label class="input-group-text" for="inputGroupSelect01"><i
+                            class="fs-4 fas fa-plane-departure"></i></label>
+                        <select formControlName="inicio" class="form-control">
+                          <option value="" disabled>
+                            Select airport
+                          </option>
+                          <option *ngFor="let aeropuerto of _aeropuertoInicio" [ngValue]="aeropuerto">
+                            {{aeropuerto.nombre}}
+                          </option>
+                        </select>
+
+                      </div>
+                      <div class="text-danger"
+                        *ngIf="itemsForm.get('inicio')?.hasError('required') && itemsForm.get('inicio')?.touched">
+                        <span>Start airport is <strong>required</strong></span>
+                      </div>
+
+                      <div class="input-group mt-3">
+                        <label class="input-group-text" for="inputGroupSelect01"><i
+                            class="fs-4 fas fa-plane-arrival"></i></label>
+
+                        <select formControlName="destino" id="fabri" class="form-control" required>
+                          <option value="" disabled>
+                            Select airport
+                          </option>
+                          <option *ngFor="let aeropuerto of _aeropuertoDestino" [ngValue]="aeropuerto">
+                            {{aeropuerto.nombre}}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="text-danger" *ngIf="itemsForm.get('destino')?.hasError('required')
+                      && itemsForm.get('destino')?.touched">
+                        <span>Arrival airport is <strong>required</strong></span>
+                      </div>
+
+                      <div class="text-danger text-center"
+                        *ngIf="!itemsForm.get('destino')?.hasError('required')&& !itemsForm.get('destino')?.hasError('required') && itemsForm.get('destino')?.value == itemsForm.get('inicio')?.value">
+                        <span>The airports must be <strong>different</strong></span>
+                      </div>
+
+                      <div class="input-group mt-3"
+                        *ngIf="itemsForm.get('selectRoundTrip')?.value==false && itemsForm.get('selectOneWay')?.value==false">
+                        <input type="date" id="fecha1" min={{fecha}} class="form-control" disabled>
+                        <input type="date" id="fecha2" min={{fecha}} class="form-control" disabled>
+                      </div>
+
+                      <div class="input-group mt-3"
+                        *ngIf="itemsForm.get('selectRoundTrip')?.value==false && itemsForm.get('selectOneWay')?.value==true">
+                        <input formControlName="fechaInicio" min={{fecha}} type="date" id="fecha1" class="form-control">
+                        <input type="date" id="fecha2" min={{fecha}} class="form-control" disabled>
+                      </div>
+
+                      <div class="input-group mt-3"
+                        *ngIf="itemsForm.get('selectRoundTrip')?.value==true && itemsForm.get('selectOneWay')?.value==true">
+                        <input formControlName="fechaInicio" min={{fecha}} type="date" id="fecha1" class="form-control">
+                        <input formControlName="fechaFinal" min={{fecha}} type="date" id="fecha2" class="form-control">
+                      </div>
+
+                      <div class="mb-3 mt-3 d-flex justify-content-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="option2" (change)="seleccion_OneWay()">
+                          <label class="form-check-label" for="inlineRadio2">One Way</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            value="option1" (change)="seleccion_RoundTrip()">
+                          <label class="form-check-label" for="inlineRadio1">Round Trip</label>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class=" mb-1 col-md-12">
+                          <input type="submit" class="btn btn-primary btn-block" value="Search">
+                          <button hidden name="modal" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+
+                          </button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- RUTAS CON DESCUENTOS -->
+<div class="gtco-section">
+  <div class="gtco-container">
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{tipoBusqueda}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p
+              *ngIf="_vuelosBusqueda_RoundTrip1.length==0 && itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              Oops !! It seems we don't have a flights for the selected date!
+            </p>
+            <p *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              Outbound flight
+            </p>
+            <div class="card shadow mb-4"
+              *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              <div class="card-body overflow-auto">
+                <a (click)="cambiarRT1()" class="currency">
+                  <i class="fs-5 fas fa-coins text-warning"></i> Change currency
+              </a>
+                <table class="table table-striped">
+                  <!--routerlink, used to render another component-->
+                  <thead>
+                    <tr>
+                      <th style="text-align:center" scope="col">Departure</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Arrival</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Discount</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Price</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Buy</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of _vuelosBusqueda_RoundTrip1| paginate: { itemsPerPage: 10, currentPage: p }">
+                      <td style="text-align:center">{{item.horario_id.fecha}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.hora_lleg}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.ruta_id.descuento}}%</td>
+                      <td></td>
+                      <td style="text-align:center">{{(modoColonesRT1)?calculoMoneda(item.ruta_id.precio_trayecto):"$"+item.ruta_id.precio_trayecto}}</td>
+                      <td></td>
+                      <td style="text-align:center">
+                        <i (click)="consultar()" class="fs-5 far fa-credit-card text-success"></i>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr *ngIf="_vuelosBusqueda_RoundTrip1==null || _vuelosBusqueda_RoundTrip1.length==0">
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+
+            <p
+              *ngIf="_vuelosBusqueda_RoundTrip2.length==0 && itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              Oops !! It seems we don't have a flights for the selected date!
+            </p>
+            <p *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              Return flight
+            </p>
+            <div class="card shadow mb-4"
+              *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==true">
+              <div class="card-body overflow-auto">
+                <a (click)="cambiarRT2()" class="currency">
+                  <i class="fs-5 fas fa-coins text-warning"></i> Change currency
+              </a>
+                <table class="table table-striped">
+                  <!--routerlink, used to render another component-->
+                  <thead>
+                    <tr>
+                      <th style="text-align:center" scope="col">Departure</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Arrival</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Discount</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Price</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Buy</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of _vuelosBusqueda_RoundTrip2| paginate: { itemsPerPage: 10, currentPage: p }">
+                      <td style="text-align:center">{{item.horario_id.fecha}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.hora_lleg}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.ruta_id.descuento}}%</td>
+                      <td></td>
+                      <td style="text-align:center">{{(modoColonesRT2)?calculoMoneda(item.ruta_id.precio_trayecto):"$"+item.ruta_id.precio_trayecto}}</td>
+                      <td></td>
+                      <td style="text-align:center">
+                        <i (click)="consultar()" class="fs-5 far fa-credit-card text-success"></i>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr *ngIf="_vuelosBusqueda_RoundTrip2==null || _vuelosBusqueda_RoundTrip2.length==0">
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+
+
+
+
+
+
+
+            <p *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==false">
+              Outbound flight
+            </p>
+
+
+
+            <p
+              *ngIf="_vuelosBusqueda_OneWay.length==0 && itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==false">
+              Oops !! It seems we don't have a flights for the selected date!
+            </p>
+            <div class="card shadow mb-4"
+              *ngIf="itemsForm.get('selectOneWay')?.value==true && itemsForm.get('selectRoundTrip')?.value==false">
+
+              <div class="card-body overflow-auto">
+                <a (click)="cambiarOW()" class="currency">
+                  <i class="fs-5 fas fa-coins text-warning"></i> Change currency
+              </a>
+                <table class="table table-striped">
+                  <!--routerlink, used to render another component-->
+                  <thead>
+                    <tr>
+                      <th style="text-align:center" scope="col">Departure</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Arrival</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Discount</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Price</th>
+                      <th scope="col"></th>
+                      <th style="text-align:center" scope="col">Buy</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of _vuelosBusqueda_OneWay| paginate: { itemsPerPage: 10, currentPage: p }">
+                      <td style="text-align:center">{{item.horario_id.fecha}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.hora_lleg}}</td>
+                      <td></td>
+                      <td style="text-align:center">{{item.ruta_id.descuento}}%</td>
+                      <td></td>
+                      <td style="text-align:center">{{(modoColonesOW)?calculoMoneda(item.ruta_id.precio_trayecto):"$"+item.ruta_id.precio_trayecto}}</td>
+                      <td></td>
+                      <td style="text-align:center">
+                        <i (click)="consultar()" class="fs-5 far fa-credit-card text-success"></i>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr *ngIf="_vuelosBusqueda_OneWay==null || _vuelosBusqueda_OneWay.length==0">
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                      <td style="text-align:center">- - -</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls class="col-auto text-center" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-2 text-center gtco-heading">
+        <h2>Destinations on offer</h2>
+        <p>The following destinations are on sale right now, so hurry up and start flying with us today.</p>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let item of _rutasDescuento">
+        <a style="text-decoration: none;" routerLink="/offers" class="fh5co-card-item image-popup">
+          <figure>
+            <div class="overlay"><i class="ti-plus"></i></div>
+            <img src="../../../assets/images/imagen-rutas-demo.jpg" alt="Image" class="img-responsive">
+          </figure>
+          <div class="fh5co-text">
+            <h2>{{item.destino.ciudad}} , {{item.destino.pais}}</h2>
+            <p>The price of your destination is only ${{item.precio_trayecto}} and you now have an offer of
+              {{item.descuento}}% discount </p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BANNER INFORMATIVO -->
+<div class="gtco-cover gtco-cover-sm" style="background-image: url(./assets/images/img_bg_1.jpg)"
+  data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="gtco-container text-center">
+    <div class="display-t">
+      <div class="display-tc">
+        <h1>We have high quality services that you will surely love!</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NUMEROS CON INFORMACION ATRACTIVA -->
+<div id="gtco-counter" class="gtco-section">
+  <div class="gtco-container">
+    <div class="row">
+      <div class="col-md-12 col-md-offset-2 text-center gtco-heading animate-box">
+        <h2>Our Success</h2>
+        <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab
+          aliquam dolor eius.</p>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+        <div class="feature-center">
+          <span class="counter ">{{v_NumRutas}}</span>
+          <span class="counter-label">Routes</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+        <div class="feature-center">
+          <span class="counter ">{{v_NumAviones}}</span>
+          <span class="counter-label">Airplanes</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+        <div class="feature-center">
+          <span class="counter">{{v_NumClientes}}</span>
+          <span class="counter-label">Travelers</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+        <div class="feature-center">
+          <span class="counter ">{{v_NumVuelos}}</span>
+          <span class="counter-label">Flights</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BANNER INFORMATIVO -->
+<div id="gtco-subscribe">
+  <div class="gtco-container">
+    <div class="row animate-box">
+      <div class="col-md-12 col-md-offset-2 text-center gtco-heading">
+        <h2>Create an account</h2>
+        <p>Be the first to know about new offers in your favorite destinations.</p>
+      </div>
+    </div>
+  </div>
+</div>

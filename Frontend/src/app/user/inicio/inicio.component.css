@@ -1,0 +1,25 @@
+ .btn-block{
+width: 100%;
+margin-top: 15px;
+}
+
+.fh5co-text{
+    text-decoration: none!important;
+
+}
+.modal{
+    width: 100%;
+}
+i {
+    cursor: pointer;
+}
+.fas{
+    cursor: pointer;
+    margin-left: 7px;
+}
+.currency{
+    cursor: pointer;
+    margin-left: 7px;
+    color: black;
+    font-weight: bold;
+}

@@ -1,0 +1,156 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 1 -->
+        <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+            type="button" role="tab" aria-controls="Informacion" aria-selected="true">Tab-1</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 2 -->
+        <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+            type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Tab-2</button>
+    </li>
+
+
+</ul>
+
+<div class="">
+    <form enctype="multipart/form-data" class="row g-3 needs-validation was-validated" >
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Airplane
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Brand</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.avion_id.marca}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Model</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.avion_id.modelo}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Year of production</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.avion_id.anho}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Passenger quantity</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.avion_id.cant_pasa}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="fabri" class="form-label mt-2">State of seats of the flight</label>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xl-12 ">
+                        <!--offset leaves two columns to the left-->
+                        <div style="overflow:auto;">
+                            <table class="table table-striped ">
+                                <!--routerlink, used to render another component-->
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center" scope="col">Row</th>
+                                        <th style="text-align:center" scope="col">Seat number</th>
+                                        <th style="text-align:center" scope="col">Estate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of _asientosAvion| paginate: { itemsPerPage: 10, currentPage: p_asientosAvion }">
+                                        <td style="text-align:center">{{item.fil}}</td>
+                                        <td style="text-align:center">{{item.num}}</td>
+                                        <td style="text-align:center" *ngIf="item.est==true">
+                                            <i class="fs-5 fas fa-lock text-danger"></i>
+                                        </td>
+                                        <td style="text-align:center" *ngIf="item.est==false">
+                                            <i class="fs-5 fas fa-lock-open text-success"></i>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="_asientosAvion==null || _asientosAvion.length==0">
+                                        <td style="text-align:center">- - -</td>
+                                        <td style="text-align:center">- - -</td>
+                                        <td style="text-align:center">- - -</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls class= "col-auto text-center" (pageChange)="p_asientosAvion = $event"></pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- fin del TAB 1 -->
+
+            <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Route
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Route Selected</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.ruta_id.inicio.nombre}} >>> {{_vueloSeleccionado.ruta_id.destino.nombre}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Time of departure</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.horario_id.fecha}} {{_vueloSeleccionado.horario_id.hora_sal}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Price</label>
+                                <input id="textoSelect" type="text" class="form-control" value="${{_vueloSeleccionado.ruta_id.precio_trayecto}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Time of arrival</label>
+                                <input id="textoSelect" type="text" class="form-control" value="{{_vueloSeleccionado.hora_lleg}}" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- fin del TAB 2 -->
+
+        </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+</div> <!-- fin del row principal-->
+

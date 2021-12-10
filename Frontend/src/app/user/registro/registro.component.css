@@ -1,0 +1,22 @@
+.nav-link {
+    color: #212529 !important;
+    font-weight: 500 !important;
+  }
+  
+  .lead {
+    color: rgb(220, 53, 69);
+    font-weight: 700 !important;
+  }
+  
+  .form-control.is-invalid,
+  .was-validated .form-control:invalid {
+    color: rgb(220, 53, 69) !important;
+    border-color: rgb(220, 53, 69) !important;
+    border-width: 2px !important;
+  }
+  
+  .full {
+    width: 100%;
+    height: 75vh;
+  }
+  

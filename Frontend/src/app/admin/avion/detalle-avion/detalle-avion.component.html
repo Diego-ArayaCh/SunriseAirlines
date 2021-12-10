@@ -1,0 +1,134 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 1 -->
+        <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+            type="button" role="tab" aria-controls="Informacion" aria-selected="true">Step-1</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 2 -->
+        <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+            type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Step-2</button>
+    </li>
+
+</ul>
+
+<div class="">
+    <form [formGroup]="avionForm" class="row g-3" >
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    General Information
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="fabri" class="form-label">Manufacturer</label>
+                            <input formControlName="marca"  type="text" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Model</label>
+                            <div class="col-lg-12">
+                                <input formControlName="modelo" type="text" class="form-control" readonly/>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Year of manufacture</label>
+                            <div class="col-lg-12">
+                                <input formControlName="anho" type="text" min="1990" class="form-control" readonly />
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">State</label>
+                            <div class="col-lg-12">
+                                <select formControlName="estado" type="number" class="form-control" readonly>
+                                    <option value="1" >Enabled</option>
+                                    <option value="0">Disabled</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+
+            </div> <!-- fin del TAB 1 -->
+
+            <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Characteristics
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Number of lanes</label>
+                                <input formControlName="cant_filas" min="5S" type="number" class="form-control" readonly />
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label">Seats per lane</label>
+                                <select formControlName="cant_af" type="number" class="form-control" readonly>
+                                    <option value="6" >6</option>
+                                    <option value="9">9</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3" style="max-width: 100%; border:0px">
+                    <div class="row no-gutters">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-xs-2 mb-4">
+                            <div *ngIf="previsualizacion!='' ">
+                                <img class="img-thumbnail img-fluid" [src]="previsualizacion" />
+                            </div>
+                            <img *ngIf="previsualizacion =='' " id="imagenCapturada" class="img-thumbnail img-fluid"
+                                src="/assets/images/imagen-no-disponible.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Airplane Image</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+
+            </div> <!-- fin del TAB 2 -->
+
+        </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+</div> <!-- fin del row principal-->
+
+
+
+
+

@@ -1,0 +1,151 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="width:100%">
+    <!-- SELECTOR DEL TAB-->
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 1 -->
+        <button class="nav-link active" id="Informacion-tab" data-bs-toggle="tab" data-bs-target="#Informacion"
+            type="button" role="tab" aria-controls="Informacion" aria-selected="true">Step-1</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 2 -->
+        <button class="nav-link" id="Caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#Caracteristicas"
+            type="button" role="tab" aria-controls="Caracteristicas" aria-selected="false">Step-2</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <!-- ESTE ES EL TAB 3 -->
+        <button class="nav-link" id="Crear-tab" data-bs-toggle="tab" data-bs-target="#Crear" type="button" role="tab"
+            aria-controls="Crear" aria-selected="false">End</button>
+    </li>
+
+</ul>
+
+<div class="">
+    <form [formGroup]="aeropForm" (ngSubmit)="submitForm()" class="row g-3 needs-validation was-validated" novalidate>
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="Informacion" role="tabpanel" aria-labelledby="Informacion-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    General Information
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label  class="form-label">Name</label>
+                            <input formControlName='nombre' type="text"  class="form-control" required />
+                            <div class="invalid-feedback">
+                                Missing name!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="basic-url" class="form-label">Country</label>
+                            <div class="col-lg-12">
+                                <input formControlName='pais' type="text" class="form-control" required />
+                                <div class="invalid-feedback">
+                                    Missing country!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label  class="form-label">City</label>
+                            <input formControlName='ciudad' type="text"  class="form-control" required />
+                            <div class="invalid-feedback">
+                                Missing city!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label  class="form-label">Description</label>
+                            <input formControlName='descripcion' type="text"  class="form-control" required />
+                            <div class="invalid-feedback">
+                                Missing description!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+
+            </div> <!-- fin del TAB 1 -->
+
+            <div class="tab-pane fade " id="Caracteristicas" role="tabpanel" aria-labelledby="Caracteristicas-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Location
+                </h1>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12 mb-3">
+                        <div class="full" id="map">
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+
+
+                <br />
+
+            </div> <!-- fin del TAB 2 -->
+
+            <div class="tab-pane fade " id="Crear" role="tabpanel" aria-labelledby="Crear-tab">
+                <h1 class="display-6" style="margin-top:25px; text-align:center">
+                    Update
+                </h1>
+                <hr class="my-4">
+                <br />
+                <p class="lead" style=" text-align: center; margin-top:20px">
+                    ATTENTION! The specified AIRPORT will be updated in the Database.
+                </p>
+
+                <input type="submit" value="Update Airport" class="btn btn-primary"
+                    style=" text-align: center; margin-left: 50%; transform: translateX(-50%); margin-top:60px" />
+                <br />
+
+            </div> <!-- fin del TAB 3 -->
+
+        </div> <!-- fin del tb content-->
+    </form> <!-- fin del form-->
+</div> <!-- fin del row principal-->
+
+
+
+
+<script type="text/javascript">
+    //Alv-> PARECE NO FUNCIONAR EN ANGULAR 12/10/2021
+    //JP-> Aun no funciona. Fecha 13/10/2021
+    function esElSubmit() {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+        console.log("funciona");
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }
+
+  
+
+
+
+
+
+</script>

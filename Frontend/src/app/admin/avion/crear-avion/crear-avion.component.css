@@ -1,0 +1,26 @@
+.nav-link {
+  color: #212529 !important;
+  font-weight: 500 !important;
+}
+
+.display-6 {
+  color: #09C5AB !important;
+  font-weight: 500 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+label {
+  font-weight: 500 !important;
+}
+
+.lead {
+  color: rgb(220, 53, 69);
+  font-weight: 700 !important;
+
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid{
+    color: rgb(220, 53, 69)!important;
+    border-color: rgb(220, 53, 69)!important;
+    border-width: 2px!important;
+}
